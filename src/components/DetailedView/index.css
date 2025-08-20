@@ -1,0 +1,265 @@
+/* ===============================
+   Reset & Global
+================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* remove unwanted horizontal scroll */
+}
+
+/* ===============================
+   Detailed View Page Styles
+================================= */
+.detailed-view-page {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  background-color: #fafafa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===============================
+   Restaurant Detail Header
+================================= */
+.restaurant-details {
+  position: relative;
+  background: linear-gradient(
+      rgba(0,0,0,0.6), 
+      rgba(0,0,0,0.6)
+    ),
+    url('https://res.cloudinary.com/dodfv5sbg/image/upload/v1755060861/Frame_279_1_lrsl7s.png') no-repeat center center;
+  background-size: cover; /* ensures no white lines */
+  color: #fff;
+  padding: 60px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  border-radius: 16px;
+  margin: 30px auto;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  max-width: 1200px;
+  width: 95%;
+  overflow: hidden; /* hide any stray lines */
+}
+
+.restaurant-image {
+  width: 240px;
+  height: 240px;
+  border-radius: 14px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+.restaurant-info {
+  text-align: left;
+  max-width: 600px;
+}
+
+.restaurant-name {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.restaurant-cuisine {
+  font-size: 1.3rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.restaurant-rating,
+.restaurant-reviews {
+  display: flex;
+  align-items: center;
+  font-size: 1.05rem;
+  margin: 4px 0;
+  color: #f1f1f1;
+}
+
+.star {
+  color: #FFD700;
+  margin-right: 6px;
+  font-size: 1.2rem;
+}
+
+/* ===============================
+   Other Foods Section
+================================= */
+.other-foods-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 50px auto 25px;
+  border-left: 6px solid #FFD700;
+  padding-left: 14px;
+  color: #222;
+  max-width: 1200px;
+  width: 95%;
+}
+
+/* ===============================
+   Food Cards Layout (Two Columns)
+================================= */
+.dishes-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  gap: 30px;
+  padding: 0 20px 70px;
+  justify-items: center;
+  max-width: 1200px;
+  width: 95%;
+  margin: 0 auto;
+}
+
+.dish-card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  padding: 16px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.dish-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+}
+
+.dish-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.dish-info {
+  flex: 1;
+  padding-left: 18px;
+}
+
+.dish-info h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: #222;
+}
+
+.dish-info p {
+  margin: 5px 0;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.rating-container .star {
+  font-size: 1rem;
+}
+
+/* ===============================
+   Cart Controls
+================================= */
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-controls button {
+  background-color: transparent;
+  border: 1.5px solid #333;
+  color: black;
+  border-radius: 8px;
+  width: 34px;
+  height: 34px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cart-controls button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+.cart-controls span {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.add-to-cart-btn {
+  background-color: #FFD700;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background 0.25s ease;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #e6c200;
+}
+
+/* ===============================
+   Responsive Design
+================================= */
+@media (max-width: 992px) {
+  .restaurant-details {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .restaurant-image {
+    margin-bottom: 20px;
+  }
+
+  .restaurant-info {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .dishes-list {
+    grid-template-columns: 1fr; /* single column on tablet/mobile */
+  }
+}
+
+@media (max-width: 600px) {
+  .dish-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 18px;
+  }
+
+  .dish-info {
+    padding-left: 0;
+    margin-top: 12px;
+  }
+
+  .dish-img {
+    width: 100%;
+    height: 160px;
+  }
+}

@@ -1,0 +1,39 @@
+.footer {
+  background-color: #0a1325; /* dark navy */
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.footer-logo {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.footer-logo span {
+  font-style: italic;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: #d1d5db; /* light gray */
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 22px;
+  transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #fbbf24; /* yellow hover */
+}
