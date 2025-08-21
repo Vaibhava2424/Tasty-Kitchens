@@ -436,4 +436,33 @@
       max-width: 250px;
   }
 }
+.payment-success-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  text-align: center;
+}
+
+.success-icon {
+  font-size: 60px;
+  color: #22c55e; /* green tick */
+  margin-bottom: 20px;
+}
+
+.go-home-button {
+  background-color: #f7931e;
+  color: #fff;
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.go-home-button:hover {
+  background-color: #e07c15;
+}
+
 
