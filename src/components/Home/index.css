@@ -17,7 +17,7 @@
 ======================= */
 .restaurants-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 16px 20px;
   margin-top: 50px;
@@ -327,4 +327,7 @@
   .restaurant-rating {
     justify-content: center;
   }
+}
+.rating{
+  color:#000000;
 }

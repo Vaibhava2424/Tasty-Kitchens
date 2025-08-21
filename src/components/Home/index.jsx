@@ -170,7 +170,7 @@ function Home() {
                 <p>{restaurant.cuisine}</p>
                 <div className="restaurant-rating">
                   <FaStar className="star" />
-                  <span>{restaurant.user_rating.rating}</span>
+                  <span className="rating">{restaurant.user_rating.rating}</span>
                   <span className="count">
                     ({restaurant.user_rating.total_reviews} ratings)
                   </span>
