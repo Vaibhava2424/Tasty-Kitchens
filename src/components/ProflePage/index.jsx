@@ -3,6 +3,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import "./index.css"
 import Header from '../Header'
+import Footer from '../Footer'
 
 function ProfilePage() {
   const [user, setUser] = useState(null)
@@ -66,6 +67,7 @@ function ProfilePage() {
         </div>
       </div>
     </div>
+    <Footer/>
     </>
   )
 }
