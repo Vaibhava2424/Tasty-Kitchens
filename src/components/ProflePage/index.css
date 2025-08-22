@@ -4,8 +4,9 @@
   font-family: 'Roboto', sans-serif;
   text-align: center;
   background-color: #f4f6f8;
-  min-height: 100vh;
+  min-height: 50vh; /* change from 100vh to 50vh */
 }
+
 
 /* Heading */
 .profile-page h1 {
