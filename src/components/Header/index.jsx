@@ -1,13 +1,20 @@
 import './index.css'
 import Cookies from 'js-cookie'
 import { NavLink, useNavigate, Link } from 'react-router-dom'
+import { useState } from 'react'
+import { FaBars, FaTimes } from 'react-icons/fa'
 
 function Header() {
   const navigate = useNavigate()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   const handleLogout = () => {
     Cookies.remove('token')
     navigate('/login', { replace: true })
+  }
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen)
   }
 
   return (
@@ -22,7 +29,14 @@ function Header() {
           <h1 className="site-name">Tasty Kitchens</h1>
         </Link>
       </div>
-      <ul className="header-right">
+
+      {/* Hamburger Icon - Only visible on small screens */}
+      <div className="hamburger" onClick={toggleMenu}>
+        {menuOpen ? <FaTimes /> : <FaBars />}
+      </div>
+
+      {/* Desktop / Mobile Menu */}
+      <ul className={`header-right ${menuOpen ? 'open' : ''}`}>
         <li>
           <NavLink
             to="/"
@@ -30,6 +44,7 @@ function Header() {
               isActive ? 'nav-link nav-link-active' : 'nav-link'
             }
             end
+            onClick={() => setMenuOpen(false)}
           >
             Home
           </NavLink>
@@ -40,12 +55,19 @@ function Header() {
             className={({ isActive }) =>
               isActive ? 'nav-link nav-link-active' : 'nav-link'
             }
+            onClick={() => setMenuOpen(false)}
           >
             Cart
           </NavLink>
         </li>
         <li>
-          <button className="logout-btn" onClick={handleLogout}>
+          <button
+            className="logout-btn"
+            onClick={() => {
+              setMenuOpen(false)
+              handleLogout()
+            }}
+          >
             Logout
           </button>
         </li>

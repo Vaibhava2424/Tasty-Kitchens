@@ -262,4 +262,14 @@ html, body {
     width: 100%;
     height: 160px;
   }
+  .cart-controls {
+  display: flex;  
+  justify-content: center;
+  }
+  .rating-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right:10px;
+ }
 }

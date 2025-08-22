@@ -1,16 +1,13 @@
+/* Base Header Styles */
 .header-container {
   display: flex;
   justify-content: space-around;
   align-items: center;
   background-color: #f8fafc;
-  padding: 20px 16px;
+  padding: 12px 16px;
   border-bottom: 1px solid #e0e0e0;
-  flex-wrap: wrap;
-}
-
-.header-left {
-  display: flex;
-  align-items: center; /* Corrected: Centers items vertically */
+  position: relative; /* keeps menu aligned */
+  z-index: 1000; /* ensures header is above carousel */
 }
 
 .header-left-pop-res {
@@ -18,98 +15,11 @@
   align-items: center;
 }
 
-.logo {
-  height: 28px;
-  margin-right: 4px; /* smaller spacing */
-}
-
-.site-name {
-  font-size: 18px;
-  color: #f7931e;
-  font-style: italic;
-  margin: 0;
-}
-
-.header-right {
-  list-style: none;
-  display: flex;
-  align-items: center;
-  gap: 12px; /* tighter spacing */
-  margin: 0;
-  padding: 0;
-  flex-wrap: wrap;
-}
-
-.nav-link {
-  color: #1a202c;
-  text-decoration: none;
-  font-weight: 500;
-  padding: 8px 16px;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: color 0.2s, background 0.2s;
-}
-
-.nav-link.active {
-  color: #f7931e;
-}
-
-.nav-link-active {
-  color: #FFA726;
-  background: #fff7ed;
-}
-
-.logout-btn {
-  background-color: #f7931e;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-/* Responsive tweaks for smaller screens */
-@media screen and (max-width: 600px) {
-  .header-container {
-    flex-direction: row; /* Ensure a row layout on small screens */
-    justify-content: space-between; /* Space out the logo and buttons */
-    align-items: center;
-    padding: 10px;
-  }
-
-  .header-right {
-    flex-direction: row;
-    gap: 10px;
-    margin-top: 0; /* Remove top margin on small screens */
-    align-self: center; /* Center buttons when space allows */
-  }
-
-  .logo {
-    height: 24px;
-  }
-
-  .site-name {
-    font-size: 16px;
-  }
-
-  .nav-link,
-  .logout-btn {
-    font-size: 13px;
-  }
-}
-
 .logo-container {
   display: flex;
   align-items: center;
-  text-decoration: none; /* removes underline from Link */
-  color: inherit; /* keeps text color same */
-  cursor: pointer;
-}
-
-.logo-container:hover .site-name {
-  text-decoration: underline; /* optional: underline on hover */
+  text-decoration: none;
+  color: inherit;
 }
 
 .logo {
@@ -121,5 +31,98 @@
 .site-name {
   font-size: 20px;
   font-weight: bold;
+  color: #f7931e;
   cursor: pointer;
+  margin: 0;
+}
+
+.header-right {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  color: #1a202c;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav-link-active {
+  color: #FFA726;
+  background: #fff7ed;
+}
+
+.logout-btn {
+  background-color: #f7931e;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Hamburger Icon */
+.hamburger {
+  display: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* Responsive Menu for Small Screens */
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+    color: #1a202c;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header-right {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    width: 200px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1100; /* ✅ ensures menu is above carousel */
+  }
+
+  .header-right.open {
+    transform: translateX(0);
+  }
+}
+
+/* Optional: Overlay when menu is open */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1050; /* below menu, above carousel */
+  display: none;
+}
+
+.menu-overlay.active {
+  display: block;
 }
