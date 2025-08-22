@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '../Header';
 import Footer from '../Footer'; 
 import './index.css';
+import { Link, Navigate } from 'react-router-dom';
 
 function Cart() {
   const [cartItems, setCartItems] = useState(() => {
@@ -42,9 +43,8 @@ function Cart() {
     });
   };
 
-  const handleOrderNowClick = () => {
-    setOrderPlaced(false);
-  };
+ 
+
 
   // ✅ Handle placing order
   const handlePlaceOrder = () => {
@@ -68,9 +68,7 @@ function Cart() {
       <p className="empty-cart-text">
         Your cart is empty. Add something from the menu.
       </p>
-      <button type="button" className="order-now-button" onClick={handleOrderNowClick}>
-        Order Now
-      </button>
+      <Link className="go-home-button" to="/">Order Now</Link>
     </div>
   );
 
@@ -121,9 +119,7 @@ function Cart() {
       <h2>Payment Successful</h2>
       <p>Thank you for ordering</p>
       <p>Your payment is successfully completed.</p>
-      <button className="go-home-button" onClick={handleOrderNowClick}>
-        Go To Home Page
-      </button>
+      <Link className="go-home-button" to="/">Go To Home Page</Link>
     </div>
   );
 
