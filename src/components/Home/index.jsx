@@ -141,7 +141,7 @@ function Home() {
             Select Your favourite restaurant special dish and make your day happy...
           </p>
         </div>
-        <div className="header-right">
+        <div className="header-right-filter">
           <FaFilter className="filter-icon" />
           <select className="sort-select" value={sortBy} onChange={handleSortChange}>
             <option value="lowest">Sort by Lowest</option>

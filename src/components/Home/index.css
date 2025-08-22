@@ -24,7 +24,7 @@
 ======================= */
 .restaurants-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   padding: 16px 20px;
   margin-top: 50px;
@@ -270,7 +270,7 @@
 
 @media (max-width: 768px) {
   .restaurants-header {
-    flex-direction: row;
+    flex-direction: column;
     text-align: center;
     align-items: center;
   }
@@ -289,6 +289,20 @@
     justify-content: center;
     margin-top: 12px;
     position: relative; ✅ prevents floating
+  }
+   .header-right-filter {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    margin-top: 12px;
+    font-size: 14px;
+    border: solid 2px gray;
+    border-radius: 8px;
+    position: relative; 
+    padding: 8px;
   }
 
   .sort-select {
