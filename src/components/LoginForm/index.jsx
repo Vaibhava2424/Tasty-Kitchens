@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
 import './index.css'
 import Cookies from 'js-cookie'
@@ -9,19 +9,19 @@ function LoginForm() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
-  // Check token only once on component mount
-  
-    
-
   const handleLogin = async (e) => {
     e.preventDefault()
     setError('')
+
+    // Trim spaces before sending
+    const trimmedUsername = username.trim()
+    const trimmedPassword = password.trim()
 
     try {
       const response = await fetch('https://tasty-kitchen-apis.onrender.com/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username: trimmedUsername, password: trimmedPassword }),
       })
 
       const data = await response.json()
@@ -47,7 +47,7 @@ function LoginForm() {
   const token = Cookies.get('token')
   if (token) {
     return <Navigate to="/" /> // redirect if token exists
-    }
+  }
 
   return (
     <div className="login-bg">
@@ -86,6 +86,7 @@ function LoginForm() {
           {error && <p className="login-error">{error}</p>}
           <div className="login-buttons">
             <button type="submit" className="login-btn">Login</button>
+            <p className="OR-css"></p>
             <button 
               type="button" 
               className="login-btn" 

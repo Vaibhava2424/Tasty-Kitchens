@@ -11,12 +11,28 @@ function SignupForm() {
 
   const handleSignup = async (e) => {
     e.preventDefault()
+    setError('')
+
+    // Trim inputs
+    const trimmedUsername = username.trim()
+    const trimmedEmail = email.trim()
+    const trimmedPassword = password.trim()
+
+    // Basic validation
+    if (!trimmedUsername || !trimmedEmail || !trimmedPassword) {
+      setError('All fields are required')
+      return
+    }
 
     try {
       const response = await fetch('https://tasty-kitchen-apis.onrender.com/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password, email }),
+        body: JSON.stringify({
+          username: trimmedUsername,
+          email: trimmedEmail,
+          password: trimmedPassword,
+        }),
       })
 
       const data = await response.json()
@@ -36,7 +52,10 @@ function SignupForm() {
     <div className="login-bg">
       <div className="login-card">
         <div className="login-logo">
-          <img src="https://res.cloudinary.com/dodfv5sbg/image/upload/v1752822327/Frame_274_ptqsm2.png" alt="logo" />
+          <img 
+            src="https://res.cloudinary.com/dodfv5sbg/image/upload/v1752822327/Frame_274_ptqsm2.png" 
+            alt="logo" 
+          />
           <span className="login-title">Tasty Kitchens</span>
         </div>
         <h2 className="login-heading">Signup</h2>

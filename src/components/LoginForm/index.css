@@ -100,7 +100,7 @@ body, html {
 }
 
 .login-btn {
-  width: 50%;
+  width: 100%;
   align-self: center;
   background: #FFA726;
   color: #fff;
@@ -168,4 +168,5 @@ body, html {
 .login-buttons{
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
