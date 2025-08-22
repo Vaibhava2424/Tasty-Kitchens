@@ -91,3 +91,64 @@
     
   }
 }
+
+/* ===============================
+   Header Menu Right - spacing
+================================= */
+.header-right {
+  display: flex;
+  gap: 16px; /* equal spacing between items */
+  align-items: center;
+}
+
+/* ===============================
+   Profile Icon
+================================= */
+.profile-icon-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3px;        /* smaller padding */
+  border-radius: 50%;
+  color: #333;
+  transition: all 0.2s;
+}
+
+.profile-icon-link:hover {
+  background-color: #f2f2f2;
+  color: #f7931e;
+}
+
+.profile-icon {
+  width: 22px;       /* slightly smaller */
+  height: 22px;
+  transition: all 0.2s;
+}
+
+.profile-active {
+  background-color: #f7931e;
+  color: #fff;
+}
+
+.profile-active .profile-icon {
+  width: 26px;       /* slightly larger when active */
+  height: 26px;
+}
+
+/* Small screen adjustment */
+@media screen and (max-width: 768px) {
+  .header-right {
+    gap: 12px;
+  }
+
+  .profile-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .profile-active .profile-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+

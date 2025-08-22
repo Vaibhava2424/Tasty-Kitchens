@@ -6,6 +6,7 @@ import NotFound from './components/NotFound'
 import Cart from './components/Cart'
 import DetailedView from './components/DetailedView'
 import SignupForm from './components/SignupForm'
+import ProfilePage from './components/ProflePage'
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/detailed-view/:id" element={<DetailedView />} />
         <Route path="/cart" element={<Cart />} />
-        
+        <Route path="/profile" element={<ProfilePage />} />
+
         {/* Fallback route for 404 pages */}
         <Route path="*" element={<NotFound />} />
       </Routes>
