@@ -23,7 +23,7 @@ const DetailedView = () => {
 
   const fetchOtherRestaurants = async () => {
     try {
-      const response = await fetch("http://localhost:5000/products");
+      const response = await fetch("https://tasty-kitchen-apis.onrender.com/products");
       if (!response.ok) throw new Error("Failed to fetch restaurants");
       const data = await response.json();
 
