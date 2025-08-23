@@ -24,7 +24,7 @@ function ProfilePage() {
       try {
         const response = await axios.get(
           'https://tasty-kitchen-apis.onrender.com/protected',
-          { headers: { Authorization: `Bearer ${token}` } }
+          { headers: { Authorization: token } }
         )
 
         const userId = response.data.userId
@@ -53,7 +53,7 @@ function ProfilePage() {
       await axios.post(
         'https://tasty-kitchen-apis.onrender.com/feedback',
         { username: user.username, message: feedback },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: token } }
       )
       setFeedback('')
       setFeedbackStatus('Submitted successfully! Thank you for your feedback 😀.')
