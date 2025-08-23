@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
 import './index.css'
+import Cookies from 'js-cookie'
 
 function SignupForm() {
   const [username, setUsername] = useState('')
@@ -9,16 +10,20 @@ function SignupForm() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
+  // ✅ Check if token exists to prevent visiting signup
+  const token = Cookies.get('token')
+  if (token) {
+    return <Navigate to="/" replace /> // redirect to home if logged in
+  }
+
   const handleSignup = async (e) => {
     e.preventDefault()
     setError('')
 
-    // Trim inputs
     const trimmedUsername = username.trim()
     const trimmedEmail = email.trim()
     const trimmedPassword = password.trim()
 
-    // Basic validation
     if (!trimmedUsername || !trimmedEmail || !trimmedPassword) {
       setError('All fields are required')
       return
@@ -38,7 +43,17 @@ function SignupForm() {
       const data = await response.json()
 
       if (response.ok) {
-        navigate('/login') // after signup redirect to login
+        // ✅ Optionally, log in user automatically after signup
+        const loginResponse = await fetch('https://tasty-kitchen-apis.onrender.com/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username: trimmedUsername, password: trimmedPassword }),
+        })
+        const loginData = await loginResponse.json()
+        if (loginResponse.ok) {
+          Cookies.set('token', loginData.token) // save token
+          navigate('/', { replace: true }) // redirect to home
+        }
       } else {
         setError(data.error || 'Signup failed')
       }

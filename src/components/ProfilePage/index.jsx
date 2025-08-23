@@ -9,7 +9,6 @@ function ProfilePage() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-
   const [feedback, setFeedback] = useState('')
   const [feedbackStatus, setFeedbackStatus] = useState('')
 
@@ -25,7 +24,7 @@ function ProfilePage() {
       try {
         const response = await axios.get(
           'https://tasty-kitchen-apis.onrender.com/protected',
-          { headers: { Authorization: token } }
+          { headers: { Authorization: `Bearer ${token}` } }
         )
 
         const userId = response.data.userId
@@ -45,38 +44,22 @@ function ProfilePage() {
 
   const handleFeedbackSubmit = async (e) => {
     e.preventDefault()
-    setFeedbackStatus('')
-
     if (!feedback.trim()) {
-      setFeedbackStatus('Please enter feedback before submitting.')
+      setFeedbackStatus('Please enter your feedback.')
       return
     }
-
     try {
       const token = Cookies.get('token')
-      const response = await axios.post(
+      await axios.post(
         'https://tasty-kitchen-apis.onrender.com/feedback',
-        {
-          username: user.username, // ✅ backend requires "username"
-          message: feedback      // ✅ backend requires "message"
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: token || ''
-          }
-        }
+        { username: user.username, message: feedback },
+        { headers: { Authorization: `Bearer ${token}` } }
       )
-
-      if (response.status === 200 || response.status === 201) {
-        setFeedbackStatus('Feedback submitted successfully!')
-        setFeedback('')
-      } else {
-        setFeedbackStatus('Failed to submit feedback.')
-      }
+      setFeedback('')
+      setFeedbackStatus('Submitted successfully! Thank you for your feedback 😀.')
     } catch (err) {
       console.error(err)
-      setFeedbackStatus('Error submitting feedback.')
+      setFeedbackStatus('Failed to submit feedback.')
     }
   }
 
@@ -99,24 +82,28 @@ function ProfilePage() {
           </div>
         </div>
 
+        {/* ===================== Feedback Form ===================== */}
         <div className="feedback-container">
           <h2>Submit Feedback</h2>
           <form onSubmit={handleFeedbackSubmit} className="feedback-form">
             <textarea
-              placeholder="Please write your feedback here..."
               value={feedback}
               onChange={(e) => setFeedback(e.target.value)}
-              className="feedback-textarea"
-              rows={5}
-            />
-            <button type="submit" className="feedback-submit-btn">Submit Feedback</button>
-          </form>
-          {feedbackStatus && (
-  <p className={`feedback-status ${feedbackStatus.includes('successfully') ? 'success' : 'error'}`}>
-    {feedbackStatus}
-  </p>
-)}
+              placeholder="Please write your feedback about the project here..."
+              rows="4"
+            ></textarea>
+            <button type="submit">Submit</button>
 
+            {feedbackStatus && (
+              <p className={`feedback-status ${
+                feedbackStatus.toLowerCase().includes('failed') || feedbackStatus.toLowerCase().includes('please') 
+                  ? 'error' 
+                  : 'success'
+              }`}>
+                {feedbackStatus}
+              </p>
+            )}
+          </form>
         </div>
       </div>
       <Footer />

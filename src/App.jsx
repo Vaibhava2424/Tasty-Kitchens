@@ -6,7 +6,7 @@ import NotFound from './components/NotFound'
 import Cart from './components/Cart'
 import DetailedView from './components/DetailedView'
 import SignupForm from './components/SignupForm'
-import ProfilePage from './components/ProflePage'
+import ProfilePage from './components/ProfilePage'
 
 function App() {
   return (

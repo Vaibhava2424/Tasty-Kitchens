@@ -67,7 +67,6 @@ function Header() {
             </svg>
           </NavLink>
         </li>
-
         <li>
           <button className="logout-btn" onClick={handleLogout}>
             Logout

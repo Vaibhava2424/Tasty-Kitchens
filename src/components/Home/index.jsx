@@ -188,6 +188,7 @@ function Home() {
         <button
           onClick={() => setOffset((prev) => Math.max(prev - LIMIT, 0))}
           disabled={currentPage === 1}
+          className='pagination-button'
         >
           &lt;
         </button>
@@ -197,6 +198,7 @@ function Home() {
         <button
           onClick={() => setOffset((prev) => prev + LIMIT)}
           disabled={currentPage === totalPages}
+          className='pagination-button'
         >
           &gt;
         </button>
