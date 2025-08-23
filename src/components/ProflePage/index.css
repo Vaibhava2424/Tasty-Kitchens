@@ -106,19 +106,21 @@
   }
 }
 
-/* ===== Feedback Form ===== */
+/* ========== FEEDBACK FORM ========== */
 .feedback-container {
-  margin-top: 40px;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .feedback-container h2 {
   color: #f7931e;
   margin-bottom: 20px;
   font-size: 24px;
+  font-weight: 600;
   text-align: center;
 }
 
@@ -130,54 +132,78 @@
 
 .feedback-textarea {
   width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
   resize: vertical;
-  font-size: 14px;
   font-family: 'Roboto', sans-serif;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.feedback-textarea:focus {
+  border-color: #f7931e;
+  box-shadow: 0 0 8px rgba(247, 147, 30, 0.4);
+  outline: none;
 }
 
 .feedback-submit-btn {
-  background-color: #f7931e;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  padding: 12px;
+  padding: 12px 20px;
   font-size: 16px;
-  font-weight: 600;
+  background-color: #f7931e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 .feedback-submit-btn:hover {
-  background-color: #e07c15;
+  background-color: #e67300;
+  transform: translateY(-2px);
 }
 
 .feedback-status {
-  margin-top: 10px;
-  font-size: 14px;
-  color: green;
+  margin-top: 15px;
+  font-size: 15px;
+  color: #4a5568;
   text-align: center;
 }
 
-/* Responsive for small screens */
+.feedback-status.error {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+/* Responsive */
 @media screen and (max-width: 768px) {
   .feedback-container {
     width: 90%;
+    padding: 20px;
   }
+}
+/* Feedback status messages */
+.feedback-status {
+  margin-top: 15px;
+  font-size: 15px;
+  text-align: center;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
 
-  .feedback-container h2 {
-    font-size: 20px;
-  }
+/* Error messages */
+.feedback-status.error {
+  color: #e53e3e; /* red */
+  background-color: #ffe5e5;
+  border: 1px solid #e53e3e;
+  font-weight: 600;
+}
 
-  .feedback-textarea {
-    font-size: 13px;
-    padding: 10px;
-  }
-
-  .feedback-submit-btn {
-    font-size: 14px;
-    padding: 10px;
-  }
+/* Success messages */
+.feedback-status.success {
+  color: #38a169; /* green */
+  background-color: #e6ffed;
+  border: 1px solid #38a169;
+  font-weight: 600;
 }

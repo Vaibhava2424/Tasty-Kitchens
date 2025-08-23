@@ -55,9 +55,17 @@ function ProfilePage() {
     try {
       const token = Cookies.get('token')
       const response = await axios.post(
-        'https://tasty-kitchens-nu.vercel.app/feedback',
-        { username: user.username, feedback },
-        { headers: { 'Content-Type': 'application/json', Authorization: token || '' } }
+        'https://tasty-kitchen-apis.onrender.com/feedback',
+        {
+          username: user.username, // ✅ backend requires "username"
+          message: feedback      // ✅ backend requires "message"
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: token || ''
+          }
+        }
       )
 
       if (response.status === 200 || response.status === 201) {
@@ -103,7 +111,12 @@ function ProfilePage() {
             />
             <button type="submit" className="feedback-submit-btn">Submit Feedback</button>
           </form>
-          {feedbackStatus && <p className="feedback-status">{feedbackStatus}</p>}
+          {feedbackStatus && (
+  <p className={`feedback-status ${feedbackStatus.includes('successfully') ? 'success' : 'error'}`}>
+    {feedbackStatus}
+  </p>
+)}
+
         </div>
       </div>
       <Footer />
