@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import "./index.css";
 import Header from "../Header";
 import { FaStar } from "react-icons/fa";
@@ -21,12 +21,14 @@ const DetailedView = () => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }, [cartItems]);
 
+  // Fetch other restaurants excluding current one
   const fetchOtherRestaurants = async () => {
     try {
-      const response = await fetch("https://tasty-kitchen-apis.onrender.com/products");
+      const response = await fetch(
+        "https://tasty-kitchen-apis.onrender.com/products"
+      );
       if (!response.ok) throw new Error("Failed to fetch restaurants");
       const data = await response.json();
-
       const filteredRestaurants = data.filter(
         (res) => res.id !== restaurant.id
       );
@@ -53,34 +55,35 @@ const DetailedView = () => {
       newItems[item.id] = { ...item, count: 1 };
       return newItems;
     });
+
+    // ✅ Store restaurantId for back navigation
+    localStorage.setItem("restaurantId", restaurant.id);
   };
 
   const handleIncrement = (item) => {
-  setCartItems((prevItems) => ({
-    ...prevItems,
-    [item.id]: {
-      ...prevItems[item.id],
-      count: prevItems[item.id].count + 1,
-    },
-  }));
-};
-
+    setCartItems((prevItems) => ({
+      ...prevItems,
+      [item.id]: {
+        ...prevItems[item.id],
+        count: prevItems[item.id].count + 1,
+      },
+    }));
+  };
 
   const handleDecrement = (item) => {
-  setCartItems((prevItems) => {
-    const newItems = { ...prevItems };
-    if (newItems[item.id].count > 1) {
-      newItems[item.id] = {
-        ...newItems[item.id],
-        count: newItems[item.id].count - 1,
-      };
-    } else {
-      delete newItems[item.id];
-    }
-    return newItems;
-  });
-};
-
+    setCartItems((prevItems) => {
+      const newItems = { ...prevItems };
+      if (newItems[item.id].count > 1) {
+        newItems[item.id] = {
+          ...newItems[item.id],
+          count: newItems[item.id].count - 1,
+        };
+      } else {
+        delete newItems[item.id];
+      }
+      return newItems;
+    });
+  };
 
   return (
     <>
@@ -99,11 +102,10 @@ const DetailedView = () => {
             <p className="restaurant-rating">
               <FaStar className="star" /> {restaurant.user_rating.rating} / 5
             </p>
-            
           </div>
           <p className="restaurant-reviews">
-              {restaurant.user_rating.total_reviews} reviews
-            </p>
+            {restaurant.user_rating.total_reviews} reviews
+          </p>
         </div>
       </div>
 
@@ -127,22 +129,29 @@ const DetailedView = () => {
                   <span>{otherRestaurant.user_rating.rating}</span>
                 </div>
                 <p>₹{otherRestaurant.cost_for_two}.00</p>
+
                 {cartItems[otherRestaurant.id] ? (
-                  <div className="cart-controls">
-                    <button
-                      onClick={() => handleDecrement(otherRestaurant)}
-                      className="decrement-btn"
-                    >
-                      -
-                    </button>
-                    <span>{cartItems[otherRestaurant.id].count}</span>
-                    <button
-                      onClick={() => handleIncrement(otherRestaurant)}
-                      className="increment-btn"
-                    >
-                      +
-                    </button>
-                  </div>
+                  <>
+                    <div className="cart-controls">
+                      <button
+                        onClick={() => handleDecrement(otherRestaurant)}
+                        className="decrement-btn"
+                      >
+                        -
+                      </button>
+                      <span>{cartItems[otherRestaurant.id].count}</span>
+                      <button
+                        onClick={() => handleIncrement(otherRestaurant)}
+                        className="increment-btn"
+                      >
+                        +
+                      </button>
+                    </div>
+                    {/* ✅ View Cart Link */}
+                    <div className="view-cart-link">
+                      <Link to="/cart">View Cart</Link>
+                    </div>
+                  </>
                 ) : (
                   <button
                     onClick={() => handleAddToCart(otherRestaurant)}

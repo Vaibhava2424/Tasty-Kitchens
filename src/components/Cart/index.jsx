@@ -2,21 +2,27 @@ import React, { useState, useEffect } from 'react';
 import Header from '../Header';
 import Footer from '../Footer'; 
 import './index.css';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Cart() {
+  const navigate = useNavigate();
+
   const [cartItems, setCartItems] = useState(() => {
     const storedCart = localStorage.getItem('cart');
     return storedCart ? JSON.parse(storedCart) : {};
   });
 
-  const [orderPlaced, setOrderPlaced] = useState(false); // ✅ Track order status
+  const [orderPlaced, setOrderPlaced] = useState(false);
 
   const cartArray = Object.values(cartItems);
+
+  // ✅ Get restaurantId from localStorage
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
+
+
 
   const handleIncrement = (item) => {
     setCartItems((prevItems) => ({
@@ -43,14 +49,15 @@ function Cart() {
     });
   };
 
- 
-
-
-  // ✅ Handle placing order
   const handlePlaceOrder = () => {
     setCartItems({});
     localStorage.removeItem('cart');
-    setOrderPlaced(true); // show success screen
+    setOrderPlaced(true);
+  };
+
+  const handleGoBack = () => {
+    
+      navigate('/'); // fallback to home
   };
 
   const orderTotal = cartArray.reduce((total, item) => {
@@ -107,10 +114,16 @@ function Cart() {
           Place Order
         </button>
       </div>
+
+      {/* ✅ Back Button */}
+      <div className="back-button-container">
+        <button className="back-button" onClick={handleGoBack}>
+          ⬅ Back To Home
+        </button>
+      </div>
     </div>
   );
 
-  // ✅ Payment Success view
   const renderPaymentSuccess = () => (
     <div className="payment-success-container">
       <div className="success-icon">
@@ -127,9 +140,6 @@ function Cart() {
     <>
      <Header />
       <div className="cart-bg">
-       
-
-        {/* ✅ Show success screen if order placed, else cart */}
         {orderPlaced 
           ? renderPaymentSuccess() 
           : (cartArray.length === 0 ? renderEmptyCartView() : renderCartItems())}
