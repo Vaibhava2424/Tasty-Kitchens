@@ -57,10 +57,17 @@
 .nav-link-active {
   color: #FFA726;
   background: #fff7ed;
+  border-color: #FFA726;
+  box-shadow: 0 0 15px rgba(247, 147, 30, 0.4);
+  outline: solid;
+}
+.nav-link:hover {
+  color: #FFA726;
+
 }
 
 .logout-btn {
-  background-color: #f7931e;
+  background-color: #FFA726 ;
   color: white;
   border: none;
   padding: 6px 12px;
@@ -68,6 +75,11 @@
   cursor: pointer;
   font-weight: 600;
   font-size: 14px;
+}
+.logout-btn:hover{
+  color: #ffffff;
+  border-color: #FFA726;
+  box-shadow: 0 0 15px rgba(247, 147, 30, 0.4);
 }
 
 /* Responsive for small and medium screens */
@@ -114,26 +126,22 @@
   transition: all 0.2s;
 }
 
-.profile-icon-link:hover {
-  background-color: #f2f2f2;
-  color: #f7931e;
-}
-
 .profile-icon {
-  width: 22px;       /* slightly smaller */
-  height: 22px;
+  width: 28px;       /* slightly smaller */
+  height: 28px;
   transition: all 0.2s;
 }
-
-.profile-active {
-  background-color: #f7931e;
-  color: #fff;
+.profile-icon:hover {
+  color:#FFA726;
+}
+.profile-active  {
+  color: #FFA726;
+  background: #fff7ed;
+  border-color: #FFA726;
+  box-shadow: 0 0 15px rgba(247, 147, 30, 0.4);
+  outline: solid;
 }
 
-.profile-active .profile-icon {
-  width: 26px;       /* slightly larger when active */
-  height: 26px;
-}
 
 /* Small screen adjustment */
 @media screen and (max-width: 768px) {
@@ -142,13 +150,18 @@
   }
 
   .profile-icon {
-    width: 18px;
-    height: 18px;
+    width: 28px;       /* slightly smaller */
+  height: 28px;
   }
 
   .profile-active .profile-icon {
-    width: 22px;
-    height: 22px;
+    width: 28px;
+    height: 28px;
   }
+  .header-right {
+    display:flex;
+    justify-content: space-evenly;
+  }
+
 }
 

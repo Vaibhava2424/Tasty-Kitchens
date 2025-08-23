@@ -125,8 +125,9 @@ function Cart() {
 
   return (
     <>
+     <Header />
       <div className="cart-bg">
-        <Header />
+       
 
         {/* ✅ Show success screen if order placed, else cart */}
         {orderPlaced 
